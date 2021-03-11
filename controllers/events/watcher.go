@@ -27,7 +27,6 @@ type watchManager struct {
 }
 
 type watchInfo struct {
-	ref       objectReference
 	watch     watch.Interface
 	lastEvent time.Time
 	serial    int
@@ -57,7 +56,6 @@ func (m *watchManager) watch(obj runtime.Object, ew eventNotifier) error {
 			return nil
 		}
 		wi = &watchInfo{
-			ref:       ref,
 			lastEvent: time.Now().Add(-defaultRecentWindow), // TODO: maybe this can be done more cleanly
 		}
 		m.watches[ref] = wi
@@ -145,6 +143,14 @@ func (w *watchInfo) checkConditionUpdates(obj *unstructured.Unstructured, ew eve
 			reason = operation
 		}
 
+		ma, _ := meta.Accessor(obj)
+		gvk := obj.GetObjectKind().GroupVersionKind()
+		ref := corev1.ObjectReference{
+			Kind:       gvk.Kind,
+			Namespace:  ma.GetNamespace(),
+			Name:       ma.GetName(),
+			APIVersion: gvk.Group + "/" + gvk.Version,
+		}
 		// synthesise an Event which we will use to generate a Span with all relevant information
 		event := corev1.Event{
 			ObjectMeta: v1.ObjectMeta{
@@ -155,7 +161,7 @@ func (w *watchInfo) checkConditionUpdates(obj *unstructured.Unstructured, ew eve
 			},
 			EventTime:      v1.NewMicroTime(lastTransitionTime),
 			Type:           name + " " + status,
-			InvolvedObject: objRefFromRef(w.ref),
+			InvolvedObject: ref,
 			Message:        message,
 			Reason:         reason,
 		}
