@@ -16,8 +16,10 @@ import (
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	"k8s.io/apimachinery/pkg/api/meta"
 	"k8s.io/apimachinery/pkg/runtime"
+	"k8s.io/client-go/dynamic"
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/client"
+	"sigs.k8s.io/controller-runtime/pkg/client/apiutil"
 	"sigs.k8s.io/controller-runtime/pkg/metrics"
 )
 
@@ -35,6 +37,7 @@ type EventWatcher struct {
 	startTime time.Time
 	recent    *recentInfoStore
 	pending   []*corev1.Event
+	watcher   *watchManager
 	resources map[source]*resource.Resource
 	outgoing  *outgoing
 }
@@ -163,6 +166,11 @@ func (r *EventWatcher) emitSpanFromEvent(ctx context.Context, log logr.Logger, e
 	if !success {
 		involved, err = getObject(ctx, r.Client, apiVersion, ref.object.Kind, ref.object.Namespace, ref.object.Name)
 		if err == nil {
+			err = r.watcher.watch(involved, r)
+			if err != nil {
+				return false, err
+			}
+
 			// If our rules tell us to map this event immediately to a context, do that.
 			success, remoteContext, err = mapEventDirectlyToContext(ctx, r.Client, event, involved)
 			if err != nil {
@@ -183,6 +191,10 @@ func (r *EventWatcher) emitSpanFromEvent(ctx context.Context, log logr.Logger, e
 		if ref.actor.Name != "" {
 			involved, err = getObject(ctx, r.Client, event.InvolvedObject.APIVersion, ref.actor.Kind, ref.actor.Namespace, ref.actor.Name)
 			if err == nil {
+				err = r.watcher.watch(involved, r)
+				if err != nil {
+					return false, err
+				}
 				remoteContext, err = recentSpanContextFromObject(ctx, involved, r.recent)
 				if err != nil {
 					return false, err
@@ -302,12 +314,13 @@ func (r *EventWatcher) runTicker() {
 	}
 }
 
-func (r *EventWatcher) initialize() {
+func (r *EventWatcher) initialize(kubeClient dynamic.Interface, mapper meta.RESTMapper) {
 	r.Lock()
 	r.startTime = time.Now()
 	r.recent = newRecentInfoStore()
 	r.resources = make(map[source]*resource.Resource)
 	r.outgoing = newOutgoing()
+	r.watcher = newWatchManager(kubeClient, mapper)
 	r.Unlock()
 	go r.runTicker()
 }
@@ -320,7 +333,13 @@ func (r *EventWatcher) stop() {
 
 // SetupWithManager to set up the watcher
 func (r *EventWatcher) SetupWithManager(mgr ctrl.Manager) error {
-	r.initialize()
+	kubeClient, err := dynamic.NewForConfig(mgr.GetConfig())
+	if err != nil {
+		return err
+	}
+	mapper, err := apiutil.NewDynamicRESTMapper(mgr.GetConfig())
+
+	r.initialize(kubeClient, mapper)
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&corev1.Event{}).
 		Complete(r)
