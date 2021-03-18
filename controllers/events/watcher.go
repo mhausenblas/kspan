@@ -162,13 +162,15 @@ func (w *watchInfo) checkConditionUpdates(obj *unstructured.Unstructured, ew eve
 		// synthesise an Event which we will use to generate a Span with all relevant information
 		event := corev1.Event{
 			ObjectMeta: v1.ObjectMeta{
-				UID: types.UID(fmt.Sprintf("%s-%d", w.ref.Name, w.serial)),
+				Namespace: ma.GetNamespace(),
+				Name:      fmt.Sprintf("%s-%d", ma.GetName(), w.serial),
+				UID:       types.UID(fmt.Sprintf("%s/%s-%d", ma.GetNamespace(), ma.GetName(), w.serial)),
 			},
 			Source: corev1.EventSource{
 				Component: source,
 			},
 			EventTime:      v1.NewMicroTime(lastTransitionTime),
-			Type:           name + " " + status,
+			Type:           name + " " + status + " " + lastTransitionStr,
 			InvolvedObject: ref,
 			Message:        message,
 			Reason:         reason,
