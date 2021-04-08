@@ -170,7 +170,7 @@ func (w *watchInfo) checkConditionUpdates(obj *unstructured.Unstructured, ew eve
 				Component: source,
 			},
 			EventTime:      v1.NewMicroTime(lastTransitionTime),
-			Type:           name + " " + status + " " + lastTransitionStr,
+			Type:           corev1.EventTypeNormal,
 			InvolvedObject: ref,
 			Message:        message,
 			Reason:         reason,
