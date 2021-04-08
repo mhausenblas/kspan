@@ -276,6 +276,10 @@ func (r *EventWatcher) makeSpanContextFromObject(ctx context.Context, obj runtim
 		if err != nil {
 			return noTrace, err
 		}
+		err = r.watcher.watch(owner, r) // watch everything in the chain for in-object events
+		if err != nil {
+			return noTrace, err
+		}
 		remoteContext, err := r.makeSpanContextFromObject(ctx, owner, eventTime)
 		if err != nil {
 			return noTrace, err
