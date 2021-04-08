@@ -139,16 +139,23 @@ func (w *watchInfo) checkConditionUpdates(obj *unstructured.Unstructured, ew eve
 
 		// See if we can find a managedFields entry for this condition
 		source, operation, ts := getUpdateSource(obj, "f:status", "f:conditions", `k:{"type":"`+name+`"}`)
+		if ts.IsZero() {
+			// Look for a manager of 'conditions' as a whole
+			source, operation, ts = getUpdateSource(obj, "f:status", "f:conditions")
+		}
+
 		if reason == "" {
-			if ts.IsZero() {
-				// Look for a manager of 'conditions' as a whole
-				source, reason, ts = getUpdateSource(obj, "f:status", "f:conditions")
-				if ts.IsZero() {
-					reason = name
-				}
-			} else {
+			if name != "" {
+				reason = name
+			} else if operation != "" {
 				reason = operation
+			} else {
+				reason = "Unknown"
 			}
+		}
+
+		if message == "" {
+			message = name + " " + status + " " + lastTransitionStr
 		}
 
 		ma, _ := meta.Accessor(obj)
