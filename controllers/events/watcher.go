@@ -185,6 +185,8 @@ func (w *watchInfo) checkConditionUpdates(obj *unstructured.Unstructured, ew eve
 			latest = lastTransitionTime
 		}
 	}
-	w.lastEvent = latest
+	if !latest.IsZero() {
+		w.lastEvent = latest
+	}
 	return nil
 }
