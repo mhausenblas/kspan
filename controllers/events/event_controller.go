@@ -338,6 +338,9 @@ func (r *EventWatcher) SetupWithManager(mgr ctrl.Manager) error {
 		return err
 	}
 	mapper, err := apiutil.NewDynamicRESTMapper(mgr.GetConfig())
+	if err != nil {
+		return err
+	}
 
 	r.initialize(kubeClient, mapper)
 	return ctrl.NewControllerManagedBy(mgr).
