@@ -134,14 +134,6 @@ func refFromObjRef(oRef corev1.ObjectReference) objectReference {
 	}
 }
 
-func objRefFromRef(ref objectReference) corev1.ObjectReference {
-	return corev1.ObjectReference{
-		Kind:      ref.Kind,
-		Namespace: ref.Namespace,
-		Name:      ref.Name,
-	}
-}
-
 func refFromOwner(oRef v1.OwnerReference, namespace string) objectReference {
 	return objectReference{
 		Kind:      lc(oRef.Kind),
