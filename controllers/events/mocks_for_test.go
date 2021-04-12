@@ -27,6 +27,7 @@ func newMockRESTMapper() meta.RESTMapper {
 		baseMapper := meta.NewDefaultRESTMapper(nil)
 		// Add the object kinds that we use in fixtures.
 		baseMapper.Add(schema.GroupVersionKind{Group: "apps", Version: "v1", Kind: "deployment"}, meta.RESTScopeNamespace)
+		baseMapper.Add(schema.GroupVersionKind{Group: "apps", Version: "v1", Kind: "Deployment"}, meta.RESTScopeNamespace) // TODO: check why we need this
 		baseMapper.Add(schema.GroupVersionKind{Group: "apps", Version: "v1", Kind: "replicaset"}, meta.RESTScopeNamespace)
 		baseMapper.Add(schema.GroupVersionKind{Group: "apps", Version: "v1", Kind: "statefulset"}, meta.RESTScopeNamespace)
 		baseMapper.Add(schema.GroupVersionKind{Group: "", Version: "v1", Kind: "pod"}, meta.RESTScopeNamespace)
