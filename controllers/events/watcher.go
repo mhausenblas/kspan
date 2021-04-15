@@ -184,6 +184,7 @@ func (w *watchInfo) checkConditionUpdates(obj *unstructured.Unstructured, ew eve
 			Message:        message,
 			Reason:         reason,
 		}
+		adjustEventTime(&event, time.Now())
 
 		err = ew.handleEvent(context.TODO(), &event)
 		if err != nil {
