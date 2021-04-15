@@ -10,6 +10,7 @@ import (
 	"k8s.io/apimachinery/pkg/api/meta"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
+	"k8s.io/apimachinery/pkg/fields"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"k8s.io/apimachinery/pkg/types"
@@ -68,6 +69,7 @@ func (m *watchManager) watch(obj runtime.Object, ew eventNotifier) error {
 		return err
 	}
 	listOptions := v1.ListOptions{
+		FieldSelector:   fields.OneTermEqualSelector("metadata.name", ma.GetName()).String(),
 		ResourceVersion: ma.GetResourceVersion(),
 	}
 	wi.watch, err = r.Watch(listOptions)
