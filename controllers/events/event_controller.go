@@ -166,7 +166,7 @@ func (r *EventWatcher) emitSpanFromEvent(ctx context.Context, log logr.Logger, e
 	if !success {
 		involved, err = getObject(ctx, r.Client, apiVersion, ref.object.Kind, ref.object.Namespace, ref.object.Name)
 		if err == nil {
-			err = r.watcher.watch(involved, r)
+			err = r.watcher.watch(ctx, involved, r)
 			if err != nil {
 				return false, err
 			}
@@ -191,7 +191,7 @@ func (r *EventWatcher) emitSpanFromEvent(ctx context.Context, log logr.Logger, e
 		if ref.actor.Name != "" {
 			involved, err = getObject(ctx, r.Client, event.InvolvedObject.APIVersion, ref.actor.Kind, ref.actor.Namespace, ref.actor.Name)
 			if err == nil {
-				err = r.watcher.watch(involved, r)
+				err = r.watcher.watch(ctx, involved, r)
 				if err != nil {
 					return false, err
 				}
@@ -276,7 +276,7 @@ func (r *EventWatcher) makeSpanContextFromObject(ctx context.Context, obj runtim
 		if err != nil {
 			return noTrace, err
 		}
-		err = r.watcher.watch(owner, r) // watch everything in the chain for in-object events
+		err = r.watcher.watch(ctx, owner, r) // watch everything in the chain for in-object events
 		if err != nil {
 			return noTrace, err
 		}

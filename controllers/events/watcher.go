@@ -46,7 +46,7 @@ type eventNotifier interface {
 	handleEvent(ctx context.Context, event *corev1.Event) error
 }
 
-func (m *watchManager) watch(obj runtime.Object, ew eventNotifier) error {
+func (m *watchManager) watch(ctx context.Context, obj runtime.Object, ew eventNotifier) error {
 	ma, _ := meta.Accessor(obj)
 	var wi *watchInfo
 	{
@@ -72,7 +72,7 @@ func (m *watchManager) watch(obj runtime.Object, ew eventNotifier) error {
 		FieldSelector:   fields.OneTermEqualSelector("metadata.name", ma.GetName()).String(),
 		ResourceVersion: ma.GetResourceVersion(),
 	}
-	wi.watch, err = r.Watch(listOptions)
+	wi.watch, err = r.Watch(ctx, listOptions)
 	if err != nil {
 		return fmt.Errorf("object watch failed: %w", err)
 	}
