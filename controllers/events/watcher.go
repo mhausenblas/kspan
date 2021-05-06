@@ -176,7 +176,7 @@ func (w *watchInfo) checkConditionUpdates(obj *unstructured.Unstructured, ew eve
 		}
 
 		if message == "" {
-			message = name + " " + status + " " + lastTransitionStr
+			message = name + " " + status
 		}
 
 		ma, _ := meta.Accessor(obj)
