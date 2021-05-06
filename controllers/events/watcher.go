@@ -16,6 +16,8 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/dynamic"
+
+	"github.com/weaveworks-experiments/kspan/pkg/mtime"
 )
 
 // Take out watches on individual objects, and notify changes in Conditions back as synthetic Events
@@ -58,7 +60,7 @@ func (m *watchManager) watch(ctx context.Context, obj runtime.Object, ew eventNo
 			return nil
 		}
 		wi = &watchInfo{
-			lastEvent: time.Now().Add(-defaultRecentWindow), // TODO: maybe this can be done more cleanly
+			lastEvent: mtime.Now().Add(-defaultRecentWindow), // TODO: maybe this can be done more cleanly
 		}
 		m.watches[ref] = wi
 		m.Unlock()
@@ -201,7 +203,7 @@ func (w *watchInfo) checkConditionUpdates(obj *unstructured.Unstructured, ew eve
 			Message:        message,
 			Reason:         reason,
 		}
-		adjustEventTime(&event, time.Now())
+		adjustEventTime(&event, mtime.Now())
 
 		err = ew.handleEvent(context.TODO(), &event)
 		if err != nil {

@@ -264,3 +264,62 @@ func TestStsRolloutFromFlux(t *testing.T) {
 		})
 	}
 }
+
+func TestDeployWithConditions(t *testing.T) {
+	g := o.NewWithT(t)
+
+	tests := []struct {
+		name       string
+		filename   string
+		wantTraces []string
+	}{
+		{
+			name:     "test-playback",
+			filename: "/tmp/foo2",
+			wantTraces: []string{
+				"0: kubectl-client-side-apply Deployment.Update ",
+				"1: kube-controller-manager Deployment.MinimumReplicasUnavailable (0) Deployment does not have minimum availability.",
+				// Want next two to be parented off 0
+				"2: kube-controller-manager Deployment.ReplicaSetUpdated (1) ReplicaSet \"px-5f87d8856c\" is progressing.",
+				"3: kube-controller-manager Deployment.MinimumReplicasAvailable (2) Deployment has minimum availability.",
+				"4: deployment-controller Deployment.ScalingReplicaSet (0) Scaled up replica set px-5f87d8856c to 2",
+				"5: replicaset-controller ReplicaSet.SuccessfulCreate (4) Created pod: px-5f87d8856c-8f6bk",
+				// why is next one 'unknown' not kubelet as at 18?
+				"6: unknown Pod.PodScheduled (5) PodScheduled True",
+				"7: default-scheduler Pod.Scheduled (5) Successfully assigned default/px-5f87d8856c-8f6bk to kind-control-plane",
+				"8: kubelet Pod.Pulling (5) Pulling image \"ghcr.io/stefanprodan/podinfo:5.1.1\"",
+				"9: kubelet Pod.Pulled (5) Successfully pulled image \"ghcr.io/stefanprodan/podinfo:5.1.1\" in 6.055782903s",
+				"10: kubelet Pod.Created (5) Created container podinfo",
+				"11: kubelet Pod.Started (5) Started container podinfo",
+				"12: kubelet Pod.Ready (5) Ready True",
+				"13: kubelet Pod.ContainersReady (5) ContainersReady True",
+				"14: replicaset-controller ReplicaSet.SuccessfulCreate (4) Created pod: px-5f87d8856c-c29hj",
+				"15: kubelet Pod.Initialized (14) Initialized True",
+				"16: kubelet Pod.ContainersNotReady (14) containers with unready status: [podinfo]",
+				"17: kubelet Pod.ContainersNotReady (14) containers with unready status: [podinfo]",
+				"18: kubelet Pod.PodScheduled (14) PodScheduled True",
+				"19: default-scheduler Pod.Scheduled (14) Successfully assigned default/px-5f87d8856c-c29hj to kind-control-plane",
+				"20: kubelet Pod.Pulling (14) Pulling image \"ghcr.io/stefanprodan/podinfo:5.1.1\"",
+				"21: kubelet Pod.Pulled (14) Successfully pulled image \"ghcr.io/stefanprodan/podinfo:5.1.1\" in 5.510339507s",
+				"22: kubelet Pod.Created (14) Created container podinfo",
+				"23: kubelet Pod.Started (14) Started container podinfo",
+				"24: kubelet Pod.Ready (14) Ready True",
+				"25: kubelet Pod.ContainersReady (14) ContainersReady True",
+			},
+		},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			objs, maxTimestamp, err := getInitialObjects(tt.filename)
+			g.Expect(err).NotTo(o.HaveOccurred())
+			ctx, r, exporter, _ := newTestEventWatcher(objs...)
+			defer r.stop()
+			playback(ctx, r, tt.filename)
+			threshold := maxTimestamp.Add(time.Second * 10)
+			g.Expect(r.checkOlderPending(ctx, threshold)).To(o.Succeed())
+			r.flushOutgoing(ctx, threshold)
+			g.Expect(exporter.dump()).To(o.Equal(tt.wantTraces))
+		})
+	}
+}
