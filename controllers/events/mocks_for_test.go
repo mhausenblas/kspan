@@ -55,7 +55,7 @@ func newTestEventWatcher(initObjs ...runtime.Object) (context.Context, *EventWat
 
 	fakeDynamic := dynamicFake.NewSimpleDynamicClient(scheme)
 	mockRESTMapper := newMockRESTMapper()
-	r.initialize(fakeDynamic, mockRESTMapper)
+	r.initialize(scheme, fakeDynamic, mockRESTMapper)
 
 	return ctx, r, exporter, log
 }
