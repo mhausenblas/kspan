@@ -26,11 +26,10 @@ func newMockRESTMapper() meta.RESTMapper {
 	mapper, _ := apiutil.NewDynamicRESTMapper(cfg, apiutil.WithCustomMapper(func() (meta.RESTMapper, error) {
 		baseMapper := meta.NewDefaultRESTMapper(nil)
 		// Add the object kinds that we use in fixtures.
-		baseMapper.Add(schema.GroupVersionKind{Group: "apps", Version: "v1", Kind: "deployment"}, meta.RESTScopeNamespace)
-		baseMapper.Add(schema.GroupVersionKind{Group: "apps", Version: "v1", Kind: "Deployment"}, meta.RESTScopeNamespace) // TODO: check why we need this
-		baseMapper.Add(schema.GroupVersionKind{Group: "apps", Version: "v1", Kind: "replicaset"}, meta.RESTScopeNamespace)
-		baseMapper.Add(schema.GroupVersionKind{Group: "apps", Version: "v1", Kind: "statefulset"}, meta.RESTScopeNamespace)
-		baseMapper.Add(schema.GroupVersionKind{Group: "", Version: "v1", Kind: "pod"}, meta.RESTScopeNamespace)
+		baseMapper.Add(schema.GroupVersionKind{Group: "apps", Version: "v1", Kind: "Deployment"}, meta.RESTScopeNamespace)
+		baseMapper.Add(schema.GroupVersionKind{Group: "apps", Version: "v1", Kind: "ReplicaSet"}, meta.RESTScopeNamespace)
+		baseMapper.Add(schema.GroupVersionKind{Group: "apps", Version: "v1", Kind: "StatefulSet"}, meta.RESTScopeNamespace)
+		baseMapper.Add(schema.GroupVersionKind{Group: "", Version: "v1", Kind: "Pod"}, meta.RESTScopeNamespace)
 
 		return baseMapper, nil
 	}))
