@@ -1,0 +1,2355 @@
+---
+# {"time":"2021-05-05T16:22:15.808165851Z","style":"event","kind":"Event"}
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2021-05-05T16:22:15Z"
+involvedObject:
+  apiVersion: apps/v1
+  kind: Deployment
+  name: px
+  namespace: default
+  resourceVersion: "2852437"
+  uid: 71c42017-61a7-418e-8e2c-897cf237d6e3
+kind: Event
+lastTimestamp: "2021-05-05T16:22:15Z"
+message: Scaled up replica set px-5f87d8856c to 2
+metadata:
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject:
+        f:apiVersion: {}
+        f:kind: {}
+        f:name: {}
+        f:namespace: {}
+        f:resourceVersion: {}
+        f:uid: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:source:
+        f:component: {}
+      f:type: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  name: px.167c382de9cb6e93
+  namespace: default
+  resourceVersion: "2852440"
+  selfLink: /api/v1/namespaces/default/events/px.167c382de9cb6e93
+  uid: 535f12a0-78a9-474c-aa0a-c846844d3d66
+reason: ScalingReplicaSet
+reportingComponent: ""
+reportingInstance: ""
+source:
+  component: deployment-controller
+type: Normal
+---
+# {"time":"2021-05-05T16:22:15.817719479Z","style":"initial","kind":"ReplicaSet"}
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  annotations:
+    deployment.kubernetes.io/desired-replicas: "2"
+    deployment.kubernetes.io/max-replicas: "3"
+    deployment.kubernetes.io/revision: "1"
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  generation: 1
+  labels:
+    app: podinfo
+    pod-template-hash: 5f87d8856c
+  managedFields:
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:deployment.kubernetes.io/desired-replicas: {}
+          f:deployment.kubernetes.io/max-replicas: {}
+          f:deployment.kubernetes.io/revision: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:pod-template-hash: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"71c42017-61a7-418e-8e2c-897cf237d6e3"}:
+            .: {}
+            f:apiVersion: {}
+            f:blockOwnerDeletion: {}
+            f:controller: {}
+            f:kind: {}
+            f:name: {}
+            f:uid: {}
+      f:spec:
+        f:replicas: {}
+        f:selector:
+          f:matchLabels:
+            .: {}
+            f:app: {}
+            f:pod-template-hash: {}
+        f:template:
+          f:metadata:
+            f:labels:
+              .: {}
+              f:app: {}
+              f:pod-template-hash: {}
+          f:spec:
+            f:containers:
+              k:{"name":"podinfo"}:
+                .: {}
+                f:image: {}
+                f:imagePullPolicy: {}
+                f:name: {}
+                f:resources: {}
+                f:terminationMessagePath: {}
+                f:terminationMessagePolicy: {}
+            f:dnsPolicy: {}
+            f:restartPolicy: {}
+            f:schedulerName: {}
+            f:securityContext: {}
+            f:terminationGracePeriodSeconds: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  name: px-5f87d8856c
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Deployment
+    name: px
+    uid: 71c42017-61a7-418e-8e2c-897cf237d6e3
+  resourceVersion: "2852438"
+  selfLink: /apis/apps/v1/namespaces/default/replicasets/px-5f87d8856c
+  uid: 9b7a04bf-811e-483e-826e-82c7b9e81ca7
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: podinfo
+      pod-template-hash: 5f87d8856c
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: podinfo
+        pod-template-hash: 5f87d8856c
+    spec:
+      containers:
+      - image: ghcr.io/stefanprodan/podinfo:5.1.1
+        imagePullPolicy: IfNotPresent
+        name: podinfo
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  replicas: 0
+---
+# {"time":"2021-05-05T16:22:15.831578925Z","style":"initial","kind":"Deployment"}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"px","namespace":"default"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"podinfo"}},"template":{"metadata":{"labels":{"app":"podinfo"}},"spec":{"containers":[{"image":"ghcr.io/stefanprodan/podinfo:5.1.1","name":"podinfo"}]}}}}
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  generation: 1
+  managedFields:
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          f:deployment.kubernetes.io/revision: {}
+      f:status:
+        f:conditions:
+          .: {}
+          k:{"type":"Available"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Progressing"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+        f:observedGeneration: {}
+        f:unavailableReplicas: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+      f:spec:
+        f:progressDeadlineSeconds: {}
+        f:replicas: {}
+        f:revisionHistoryLimit: {}
+        f:selector:
+          f:matchLabels:
+            .: {}
+            f:app: {}
+        f:strategy:
+          f:rollingUpdate:
+            .: {}
+            f:maxSurge: {}
+            f:maxUnavailable: {}
+          f:type: {}
+        f:template:
+          f:metadata:
+            f:labels:
+              .: {}
+              f:app: {}
+          f:spec:
+            f:containers:
+              k:{"name":"podinfo"}:
+                .: {}
+                f:image: {}
+                f:imagePullPolicy: {}
+                f:name: {}
+                f:resources: {}
+                f:terminationMessagePath: {}
+                f:terminationMessagePolicy: {}
+            f:dnsPolicy: {}
+            f:restartPolicy: {}
+            f:schedulerName: {}
+            f:securityContext: {}
+            f:terminationGracePeriodSeconds: {}
+    manager: kubectl-client-side-apply
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  name: px
+  namespace: default
+  resourceVersion: "2852444"
+  selfLink: /apis/apps/v1/namespaces/default/deployments/px
+  uid: 71c42017-61a7-418e-8e2c-897cf237d6e3
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: podinfo
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: podinfo
+    spec:
+      containers:
+      - image: ghcr.io/stefanprodan/podinfo:5.1.1
+        imagePullPolicy: IfNotPresent
+        name: podinfo
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  conditions:
+  - lastTransitionTime: "2021-05-05T16:22:15Z"
+    lastUpdateTime: "2021-05-05T16:22:15Z"
+    message: Created new replica set "px-5f87d8856c"
+    reason: NewReplicaSetCreated
+    status: "True"
+    type: Progressing
+  - lastTransitionTime: "2021-05-05T16:22:15Z"
+    lastUpdateTime: "2021-05-05T16:22:15Z"
+    message: Deployment does not have minimum availability.
+    reason: MinimumReplicasUnavailable
+    status: "False"
+    type: Available
+  observedGeneration: 1
+  unavailableReplicas: 2
+---
+# {"time":"2021-05-05T16:22:15.833205872Z","style":"event","kind":"Event"}
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2021-05-05T16:22:15Z"
+involvedObject:
+  apiVersion: apps/v1
+  kind: ReplicaSet
+  name: px-5f87d8856c
+  namespace: default
+  resourceVersion: "2852438"
+  uid: 9b7a04bf-811e-483e-826e-82c7b9e81ca7
+kind: Event
+lastTimestamp: "2021-05-05T16:22:15Z"
+message: 'Created pod: px-5f87d8856c-8f6bk'
+metadata:
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject:
+        f:apiVersion: {}
+        f:kind: {}
+        f:name: {}
+        f:namespace: {}
+        f:resourceVersion: {}
+        f:uid: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:source:
+        f:component: {}
+      f:type: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  name: px-5f87d8856c.167c382deae0542a
+  namespace: default
+  resourceVersion: "2852443"
+  selfLink: /api/v1/namespaces/default/events/px-5f87d8856c.167c382deae0542a
+  uid: bfc72744-0951-4013-bfbf-32c374d448cf
+reason: SuccessfulCreate
+reportingComponent: ""
+reportingInstance: ""
+source:
+  component: replicaset-controller
+type: Normal
+---
+# {"time":"2021-05-05T16:22:15.845590129Z","style":"initial","kind":"Pod"}
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  generateName: px-5f87d8856c-
+  labels:
+    app: podinfo
+    pod-template-hash: 5f87d8856c
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:pod-template-hash: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"9b7a04bf-811e-483e-826e-82c7b9e81ca7"}:
+            .: {}
+            f:apiVersion: {}
+            f:blockOwnerDeletion: {}
+            f:controller: {}
+            f:kind: {}
+            f:name: {}
+            f:uid: {}
+      f:spec:
+        f:containers:
+          k:{"name":"podinfo"}:
+            .: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:resources: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext: {}
+        f:terminationGracePeriodSeconds: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  name: px-5f87d8856c-8f6bk
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: px-5f87d8856c
+    uid: 9b7a04bf-811e-483e-826e-82c7b9e81ca7
+  resourceVersion: "2852441"
+  selfLink: /api/v1/namespaces/default/pods/px-5f87d8856c-8f6bk
+  uid: cdf6bfe3-ee3e-4c1b-9b9b-44ddc5230bff
+spec:
+  containers:
+  - image: ghcr.io/stefanprodan/podinfo:5.1.1
+    imagePullPolicy: IfNotPresent
+    name: podinfo
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-kx75m
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-kx75m
+    secret:
+      defaultMode: 420
+      secretName: default-token-kx75m
+status:
+  phase: Pending
+  qosClass: BestEffort
+---
+# {"time":"2021-05-05T16:22:15.857177422Z","style":"watch","kind":"Pod"}
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  generateName: px-5f87d8856c-
+  labels:
+    app: podinfo
+    pod-template-hash: 5f87d8856c
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:pod-template-hash: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"9b7a04bf-811e-483e-826e-82c7b9e81ca7"}:
+            .: {}
+            f:apiVersion: {}
+            f:blockOwnerDeletion: {}
+            f:controller: {}
+            f:kind: {}
+            f:name: {}
+            f:uid: {}
+      f:spec:
+        f:containers:
+          k:{"name":"podinfo"}:
+            .: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:resources: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext: {}
+        f:terminationGracePeriodSeconds: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  name: px-5f87d8856c-8f6bk
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: px-5f87d8856c
+    uid: 9b7a04bf-811e-483e-826e-82c7b9e81ca7
+  resourceVersion: "2852448"
+  selfLink: /api/v1/namespaces/default/pods/px-5f87d8856c-8f6bk
+  uid: cdf6bfe3-ee3e-4c1b-9b9b-44ddc5230bff
+spec:
+  containers:
+  - image: ghcr.io/stefanprodan/podinfo:5.1.1
+    imagePullPolicy: IfNotPresent
+    name: podinfo
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-kx75m
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: kind-control-plane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-kx75m
+    secret:
+      defaultMode: 420
+      secretName: default-token-kx75m
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    status: "True"
+    type: PodScheduled
+  phase: Pending
+  qosClass: BestEffort
+---
+# {"time":"2021-05-05T16:22:15.860620081Z","style":"event","kind":"Event"}
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2021-05-05T16:22:15Z"
+involvedObject:
+  apiVersion: apps/v1
+  kind: ReplicaSet
+  name: px-5f87d8856c
+  namespace: default
+  resourceVersion: "2852438"
+  uid: 9b7a04bf-811e-483e-826e-82c7b9e81ca7
+kind: Event
+lastTimestamp: "2021-05-05T16:22:15Z"
+message: 'Created pod: px-5f87d8856c-c29hj'
+metadata:
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject:
+        f:apiVersion: {}
+        f:kind: {}
+        f:name: {}
+        f:namespace: {}
+        f:resourceVersion: {}
+        f:uid: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:source:
+        f:component: {}
+      f:type: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  name: px-5f87d8856c.167c382deb4f867d
+  namespace: default
+  resourceVersion: "2852445"
+  selfLink: /api/v1/namespaces/default/events/px-5f87d8856c.167c382deb4f867d
+  uid: 2b5e2981-36c0-405f-9cad-a94df41d789e
+reason: SuccessfulCreate
+reportingComponent: ""
+reportingInstance: ""
+source:
+  component: replicaset-controller
+type: Normal
+---
+# {"time":"2021-05-05T16:22:15.86511964Z","style":"watch","kind":"Deployment"}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"px","namespace":"default"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"podinfo"}},"template":{"metadata":{"labels":{"app":"podinfo"}},"spec":{"containers":[{"image":"ghcr.io/stefanprodan/podinfo:5.1.1","name":"podinfo"}]}}}}
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  generation: 1
+  managedFields:
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          f:deployment.kubernetes.io/revision: {}
+      f:status:
+        f:conditions:
+          .: {}
+          k:{"type":"Available"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Progressing"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+        f:observedGeneration: {}
+        f:replicas: {}
+        f:unavailableReplicas: {}
+        f:updatedReplicas: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+      f:spec:
+        f:progressDeadlineSeconds: {}
+        f:replicas: {}
+        f:revisionHistoryLimit: {}
+        f:selector:
+          f:matchLabels:
+            .: {}
+            f:app: {}
+        f:strategy:
+          f:rollingUpdate:
+            .: {}
+            f:maxSurge: {}
+            f:maxUnavailable: {}
+          f:type: {}
+        f:template:
+          f:metadata:
+            f:labels:
+              .: {}
+              f:app: {}
+          f:spec:
+            f:containers:
+              k:{"name":"podinfo"}:
+                .: {}
+                f:image: {}
+                f:imagePullPolicy: {}
+                f:name: {}
+                f:resources: {}
+                f:terminationMessagePath: {}
+                f:terminationMessagePolicy: {}
+            f:dnsPolicy: {}
+            f:restartPolicy: {}
+            f:schedulerName: {}
+            f:securityContext: {}
+            f:terminationGracePeriodSeconds: {}
+    manager: kubectl-client-side-apply
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  name: px
+  namespace: default
+  resourceVersion: "2852450"
+  selfLink: /apis/apps/v1/namespaces/default/deployments/px
+  uid: 71c42017-61a7-418e-8e2c-897cf237d6e3
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: podinfo
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: podinfo
+    spec:
+      containers:
+      - image: ghcr.io/stefanprodan/podinfo:5.1.1
+        imagePullPolicy: IfNotPresent
+        name: podinfo
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  conditions:
+  - lastTransitionTime: "2021-05-05T16:22:15Z"
+    lastUpdateTime: "2021-05-05T16:22:15Z"
+    message: Deployment does not have minimum availability.
+    reason: MinimumReplicasUnavailable
+    status: "False"
+    type: Available
+  - lastTransitionTime: "2021-05-05T16:22:15Z"
+    lastUpdateTime: "2021-05-05T16:22:15Z"
+    message: ReplicaSet "px-5f87d8856c" is progressing.
+    reason: ReplicaSetUpdated
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  replicas: 2
+  unavailableReplicas: 2
+  updatedReplicas: 2
+---
+# {"time":"2021-05-05T16:22:15.882039335Z","style":"initial","kind":"Pod"}
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  generateName: px-5f87d8856c-
+  labels:
+    app: podinfo
+    pod-template-hash: 5f87d8856c
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:pod-template-hash: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"9b7a04bf-811e-483e-826e-82c7b9e81ca7"}:
+            .: {}
+            f:apiVersion: {}
+            f:blockOwnerDeletion: {}
+            f:controller: {}
+            f:kind: {}
+            f:name: {}
+            f:uid: {}
+      f:spec:
+        f:containers:
+          k:{"name":"podinfo"}:
+            .: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:resources: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext: {}
+        f:terminationGracePeriodSeconds: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  name: px-5f87d8856c-c29hj
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: px-5f87d8856c
+    uid: 9b7a04bf-811e-483e-826e-82c7b9e81ca7
+  resourceVersion: "2852449"
+  selfLink: /api/v1/namespaces/default/pods/px-5f87d8856c-c29hj
+  uid: 2d2ae783-5bc3-46ae-9f2b-a89aa0fdbcf7
+spec:
+  containers:
+  - image: ghcr.io/stefanprodan/podinfo:5.1.1
+    imagePullPolicy: IfNotPresent
+    name: podinfo
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-kx75m
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: kind-control-plane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-kx75m
+    secret:
+      defaultMode: 420
+      secretName: default-token-kx75m
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    status: "True"
+    type: PodScheduled
+  phase: Pending
+  qosClass: BestEffort
+---
+# {"time":"2021-05-05T16:22:15.892097396Z","style":"event","kind":"Event"}
+action: Binding
+apiVersion: v1
+eventTime: "2021-05-05T16:22:15.851372Z"
+firstTimestamp: null
+involvedObject:
+  apiVersion: v1
+  kind: Pod
+  name: px-5f87d8856c-8f6bk
+  namespace: default
+  resourceVersion: "2852441"
+  uid: cdf6bfe3-ee3e-4c1b-9b9b-44ddc5230bff
+kind: Event
+lastTimestamp: null
+message: Successfully assigned default/px-5f87d8856c-8f6bk to kind-control-plane
+metadata:
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  managedFields:
+  - apiVersion: events.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:action: {}
+      f:eventTime: {}
+      f:note: {}
+      f:reason: {}
+      f:regarding:
+        f:apiVersion: {}
+        f:kind: {}
+        f:name: {}
+        f:namespace: {}
+        f:resourceVersion: {}
+        f:uid: {}
+      f:reportingController: {}
+      f:reportingInstance: {}
+      f:type: {}
+    manager: kube-scheduler
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  name: px-5f87d8856c-8f6bk.167c382ded658dc4
+  namespace: default
+  resourceVersion: "2852451"
+  selfLink: /api/v1/namespaces/default/events/px-5f87d8856c-8f6bk.167c382ded658dc4
+  uid: c438e23f-4bc7-45e9-927f-53d9b5d8a025
+reason: Scheduled
+reportingComponent: default-scheduler
+reportingInstance: default-scheduler-kind-control-plane
+source: {}
+type: Normal
+---
+# {"time":"2021-05-05T16:22:15.898237525Z","style":"event","kind":"Event"}
+action: Binding
+apiVersion: v1
+eventTime: "2021-05-05T16:22:15.860466Z"
+firstTimestamp: null
+involvedObject:
+  apiVersion: v1
+  kind: Pod
+  name: px-5f87d8856c-c29hj
+  namespace: default
+  resourceVersion: "2852442"
+  uid: 2d2ae783-5bc3-46ae-9f2b-a89aa0fdbcf7
+kind: Event
+lastTimestamp: null
+message: Successfully assigned default/px-5f87d8856c-c29hj to kind-control-plane
+metadata:
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  managedFields:
+  - apiVersion: events.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:action: {}
+      f:eventTime: {}
+      f:note: {}
+      f:reason: {}
+      f:regarding:
+        f:apiVersion: {}
+        f:kind: {}
+        f:name: {}
+        f:namespace: {}
+        f:resourceVersion: {}
+        f:uid: {}
+      f:reportingController: {}
+      f:reportingInstance: {}
+      f:type: {}
+    manager: kube-scheduler
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  name: px-5f87d8856c-c29hj.167c382dedc72a80
+  namespace: default
+  resourceVersion: "2852452"
+  selfLink: /api/v1/namespaces/default/events/px-5f87d8856c-c29hj.167c382dedc72a80
+  uid: 191c1319-43ed-473c-bca9-fa006001717e
+reason: Scheduled
+reportingComponent: default-scheduler
+reportingInstance: default-scheduler-kind-control-plane
+source: {}
+type: Normal
+---
+# {"time":"2021-05-05T16:22:15.909580167Z","style":"watch","kind":"Pod"}
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  generateName: px-5f87d8856c-
+  labels:
+    app: podinfo
+    pod-template-hash: 5f87d8856c
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:pod-template-hash: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"9b7a04bf-811e-483e-826e-82c7b9e81ca7"}:
+            .: {}
+            f:apiVersion: {}
+            f:blockOwnerDeletion: {}
+            f:controller: {}
+            f:kind: {}
+            f:name: {}
+            f:uid: {}
+      f:spec:
+        f:containers:
+          k:{"name":"podinfo"}:
+            .: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:resources: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext: {}
+        f:terminationGracePeriodSeconds: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:conditions:
+          k:{"type":"ContainersReady"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Initialized"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Ready"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+        f:containerStatuses: {}
+        f:hostIP: {}
+        f:startTime: {}
+    manager: kubelet
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  name: px-5f87d8856c-8f6bk
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: px-5f87d8856c
+    uid: 9b7a04bf-811e-483e-826e-82c7b9e81ca7
+  resourceVersion: "2852453"
+  selfLink: /api/v1/namespaces/default/pods/px-5f87d8856c-8f6bk
+  uid: cdf6bfe3-ee3e-4c1b-9b9b-44ddc5230bff
+spec:
+  containers:
+  - image: ghcr.io/stefanprodan/podinfo:5.1.1
+    imagePullPolicy: IfNotPresent
+    name: podinfo
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-kx75m
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: kind-control-plane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-kx75m
+    secret:
+      defaultMode: 420
+      secretName: default-token-kx75m
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    message: 'containers with unready status: [podinfo]'
+    reason: ContainersNotReady
+    status: "False"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    message: 'containers with unready status: [podinfo]'
+    reason: ContainersNotReady
+    status: "False"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - image: ghcr.io/stefanprodan/podinfo:5.1.1
+    imageID: ""
+    lastState: {}
+    name: podinfo
+    ready: false
+    restartCount: 0
+    started: false
+    state:
+      waiting:
+        reason: ContainerCreating
+  hostIP: 172.18.0.2
+  phase: Pending
+  qosClass: BestEffort
+  startTime: "2021-05-05T16:22:15Z"
+---
+# {"time":"2021-05-05T16:22:15.917871568Z","style":"watch","kind":"Pod"}
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  generateName: px-5f87d8856c-
+  labels:
+    app: podinfo
+    pod-template-hash: 5f87d8856c
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:pod-template-hash: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"9b7a04bf-811e-483e-826e-82c7b9e81ca7"}:
+            .: {}
+            f:apiVersion: {}
+            f:blockOwnerDeletion: {}
+            f:controller: {}
+            f:kind: {}
+            f:name: {}
+            f:uid: {}
+      f:spec:
+        f:containers:
+          k:{"name":"podinfo"}:
+            .: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:resources: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext: {}
+        f:terminationGracePeriodSeconds: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:conditions:
+          k:{"type":"ContainersReady"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Initialized"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Ready"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+        f:containerStatuses: {}
+        f:hostIP: {}
+        f:startTime: {}
+    manager: kubelet
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  name: px-5f87d8856c-c29hj
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: px-5f87d8856c
+    uid: 9b7a04bf-811e-483e-826e-82c7b9e81ca7
+  resourceVersion: "2852454"
+  selfLink: /api/v1/namespaces/default/pods/px-5f87d8856c-c29hj
+  uid: 2d2ae783-5bc3-46ae-9f2b-a89aa0fdbcf7
+spec:
+  containers:
+  - image: ghcr.io/stefanprodan/podinfo:5.1.1
+    imagePullPolicy: IfNotPresent
+    name: podinfo
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-kx75m
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: kind-control-plane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-kx75m
+    secret:
+      defaultMode: 420
+      secretName: default-token-kx75m
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    message: 'containers with unready status: [podinfo]'
+    reason: ContainersNotReady
+    status: "False"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    message: 'containers with unready status: [podinfo]'
+    reason: ContainersNotReady
+    status: "False"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - image: ghcr.io/stefanprodan/podinfo:5.1.1
+    imageID: ""
+    lastState: {}
+    name: podinfo
+    ready: false
+    restartCount: 0
+    started: false
+    state:
+      waiting:
+        reason: ContainerCreating
+  hostIP: 172.18.0.2
+  phase: Pending
+  qosClass: BestEffort
+  startTime: "2021-05-05T16:22:15Z"
+---
+# {"time":"2021-05-05T16:22:16.600490417Z","style":"event","kind":"Event"}
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2021-05-05T16:22:16Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{podinfo}
+  kind: Pod
+  name: px-5f87d8856c-c29hj
+  namespace: default
+  resourceVersion: "2852449"
+  uid: 2d2ae783-5bc3-46ae-9f2b-a89aa0fdbcf7
+kind: Event
+lastTimestamp: "2021-05-05T16:22:16Z"
+message: Pulling image "ghcr.io/stefanprodan/podinfo:5.1.1"
+metadata:
+  creationTimestamp: "2021-05-05T16:22:16Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject:
+        f:apiVersion: {}
+        f:fieldPath: {}
+        f:kind: {}
+        f:name: {}
+        f:namespace: {}
+        f:resourceVersion: {}
+        f:uid: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2021-05-05T16:22:16Z"
+  name: px-5f87d8856c-c29hj.167c382e198001ea
+  namespace: default
+  resourceVersion: "2852460"
+  selfLink: /api/v1/namespaces/default/events/px-5f87d8856c-c29hj.167c382e198001ea
+  uid: d968220d-181c-4e1a-9639-8deeba36421c
+reason: Pulling
+reportingComponent: ""
+reportingInstance: ""
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal
+---
+# {"time":"2021-05-05T16:22:16.622938578Z","style":"event","kind":"Event"}
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2021-05-05T16:22:16Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{podinfo}
+  kind: Pod
+  name: px-5f87d8856c-8f6bk
+  namespace: default
+  resourceVersion: "2852448"
+  uid: cdf6bfe3-ee3e-4c1b-9b9b-44ddc5230bff
+kind: Event
+lastTimestamp: "2021-05-05T16:22:16Z"
+message: Pulling image "ghcr.io/stefanprodan/podinfo:5.1.1"
+metadata:
+  creationTimestamp: "2021-05-05T16:22:16Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject:
+        f:apiVersion: {}
+        f:fieldPath: {}
+        f:kind: {}
+        f:name: {}
+        f:namespace: {}
+        f:resourceVersion: {}
+        f:uid: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2021-05-05T16:22:16Z"
+  name: px-5f87d8856c-8f6bk.167c382e1b102a87
+  namespace: default
+  resourceVersion: "2852461"
+  selfLink: /api/v1/namespaces/default/events/px-5f87d8856c-8f6bk.167c382e1b102a87
+  uid: db1a7b6f-e01e-4167-8439-19d3d6bd9a2e
+reason: Pulling
+reportingComponent: ""
+reportingInstance: ""
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal
+---
+# {"time":"2021-05-05T16:22:22.106974029Z","style":"event","kind":"Event"}
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2021-05-05T16:22:22Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{podinfo}
+  kind: Pod
+  name: px-5f87d8856c-c29hj
+  namespace: default
+  resourceVersion: "2852449"
+  uid: 2d2ae783-5bc3-46ae-9f2b-a89aa0fdbcf7
+kind: Event
+lastTimestamp: "2021-05-05T16:22:22Z"
+message: Successfully pulled image "ghcr.io/stefanprodan/podinfo:5.1.1" in 5.510339507s
+metadata:
+  creationTimestamp: "2021-05-05T16:22:22Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject:
+        f:apiVersion: {}
+        f:fieldPath: {}
+        f:kind: {}
+        f:name: {}
+        f:namespace: {}
+        f:resourceVersion: {}
+        f:uid: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2021-05-05T16:22:22Z"
+  name: px-5f87d8856c-c29hj.167c382f61f520ed
+  namespace: default
+  resourceVersion: "2852474"
+  selfLink: /api/v1/namespaces/default/events/px-5f87d8856c-c29hj.167c382f61f520ed
+  uid: 18486786-53dd-4782-ade6-11b053cf995d
+reason: Pulled
+reportingComponent: ""
+reportingInstance: ""
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal
+---
+# {"time":"2021-05-05T16:22:22.321359105Z","style":"event","kind":"Event"}
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2021-05-05T16:22:22Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{podinfo}
+  kind: Pod
+  name: px-5f87d8856c-c29hj
+  namespace: default
+  resourceVersion: "2852449"
+  uid: 2d2ae783-5bc3-46ae-9f2b-a89aa0fdbcf7
+kind: Event
+lastTimestamp: "2021-05-05T16:22:22Z"
+message: Created container podinfo
+metadata:
+  creationTimestamp: "2021-05-05T16:22:22Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject:
+        f:apiVersion: {}
+        f:fieldPath: {}
+        f:kind: {}
+        f:name: {}
+        f:namespace: {}
+        f:resourceVersion: {}
+        f:uid: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2021-05-05T16:22:22Z"
+  name: px-5f87d8856c-c29hj.167c382f6ebb9e75
+  namespace: default
+  resourceVersion: "2852479"
+  selfLink: /api/v1/namespaces/default/events/px-5f87d8856c-c29hj.167c382f6ebb9e75
+  uid: 2b22d68a-539c-4af1-b630-2f67ce105375
+reason: Created
+reportingComponent: ""
+reportingInstance: ""
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal
+---
+# {"time":"2021-05-05T16:22:22.426415245Z","style":"event","kind":"Event"}
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2021-05-05T16:22:22Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{podinfo}
+  kind: Pod
+  name: px-5f87d8856c-c29hj
+  namespace: default
+  resourceVersion: "2852449"
+  uid: 2d2ae783-5bc3-46ae-9f2b-a89aa0fdbcf7
+kind: Event
+lastTimestamp: "2021-05-05T16:22:22Z"
+message: Started container podinfo
+metadata:
+  creationTimestamp: "2021-05-05T16:22:22Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject:
+        f:apiVersion: {}
+        f:fieldPath: {}
+        f:kind: {}
+        f:name: {}
+        f:namespace: {}
+        f:resourceVersion: {}
+        f:uid: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2021-05-05T16:22:22Z"
+  name: px-5f87d8856c-c29hj.167c382f74ff5e15
+  namespace: default
+  resourceVersion: "2852481"
+  selfLink: /api/v1/namespaces/default/events/px-5f87d8856c-c29hj.167c382f74ff5e15
+  uid: 0ca00477-61ba-4ca5-b6ef-49a1ae564aa0
+reason: Started
+reportingComponent: ""
+reportingInstance: ""
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal
+---
+# {"time":"2021-05-05T16:22:22.679954476Z","style":"event","kind":"Event"}
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2021-05-05T16:22:22Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{podinfo}
+  kind: Pod
+  name: px-5f87d8856c-8f6bk
+  namespace: default
+  resourceVersion: "2852448"
+  uid: cdf6bfe3-ee3e-4c1b-9b9b-44ddc5230bff
+kind: Event
+lastTimestamp: "2021-05-05T16:22:22Z"
+message: Successfully pulled image "ghcr.io/stefanprodan/podinfo:5.1.1" in 6.055782903s
+metadata:
+  creationTimestamp: "2021-05-05T16:22:22Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject:
+        f:apiVersion: {}
+        f:fieldPath: {}
+        f:kind: {}
+        f:name: {}
+        f:namespace: {}
+        f:resourceVersion: {}
+        f:uid: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2021-05-05T16:22:22Z"
+  name: px-5f87d8856c-8f6bk.167c382f84044300
+  namespace: default
+  resourceVersion: "2852482"
+  selfLink: /api/v1/namespaces/default/events/px-5f87d8856c-8f6bk.167c382f84044300
+  uid: 7ad025eb-0790-4769-a67a-901dbf313b1d
+reason: Pulled
+reportingComponent: ""
+reportingInstance: ""
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal
+---
+# {"time":"2021-05-05T16:22:22.707601507Z","style":"event","kind":"Event"}
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2021-05-05T16:22:22Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{podinfo}
+  kind: Pod
+  name: px-5f87d8856c-8f6bk
+  namespace: default
+  resourceVersion: "2852448"
+  uid: cdf6bfe3-ee3e-4c1b-9b9b-44ddc5230bff
+kind: Event
+lastTimestamp: "2021-05-05T16:22:22Z"
+message: Created container podinfo
+metadata:
+  creationTimestamp: "2021-05-05T16:22:22Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject:
+        f:apiVersion: {}
+        f:fieldPath: {}
+        f:kind: {}
+        f:name: {}
+        f:namespace: {}
+        f:resourceVersion: {}
+        f:uid: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2021-05-05T16:22:22Z"
+  name: px-5f87d8856c-8f6bk.167c382f85ac394b
+  namespace: default
+  resourceVersion: "2852483"
+  selfLink: /api/v1/namespaces/default/events/px-5f87d8856c-8f6bk.167c382f85ac394b
+  uid: ca7c04f2-775a-4a13-9ea6-1d8bc903e033
+reason: Created
+reportingComponent: ""
+reportingInstance: ""
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal
+---
+# {"time":"2021-05-05T16:22:22.789254188Z","style":"event","kind":"Event"}
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2021-05-05T16:22:22Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{podinfo}
+  kind: Pod
+  name: px-5f87d8856c-8f6bk
+  namespace: default
+  resourceVersion: "2852448"
+  uid: cdf6bfe3-ee3e-4c1b-9b9b-44ddc5230bff
+kind: Event
+lastTimestamp: "2021-05-05T16:22:22Z"
+message: Started container podinfo
+metadata:
+  creationTimestamp: "2021-05-05T16:22:22Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject:
+        f:apiVersion: {}
+        f:fieldPath: {}
+        f:kind: {}
+        f:name: {}
+        f:namespace: {}
+        f:resourceVersion: {}
+        f:uid: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2021-05-05T16:22:22Z"
+  name: px-5f87d8856c-8f6bk.167c382f8a9b37e6
+  namespace: default
+  resourceVersion: "2852484"
+  selfLink: /api/v1/namespaces/default/events/px-5f87d8856c-8f6bk.167c382f8a9b37e6
+  uid: 31142fbb-715e-445f-8c7a-f390cb5bc797
+reason: Started
+reportingComponent: ""
+reportingInstance: ""
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal
+---
+# {"time":"2021-05-05T16:22:23.228695906Z","style":"watch","kind":"Pod"}
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  generateName: px-5f87d8856c-
+  labels:
+    app: podinfo
+    pod-template-hash: 5f87d8856c
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:pod-template-hash: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"9b7a04bf-811e-483e-826e-82c7b9e81ca7"}:
+            .: {}
+            f:apiVersion: {}
+            f:blockOwnerDeletion: {}
+            f:controller: {}
+            f:kind: {}
+            f:name: {}
+            f:uid: {}
+      f:spec:
+        f:containers:
+          k:{"name":"podinfo"}:
+            .: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:resources: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext: {}
+        f:terminationGracePeriodSeconds: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:conditions:
+          k:{"type":"ContainersReady"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Initialized"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Ready"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+        f:containerStatuses: {}
+        f:hostIP: {}
+        f:phase: {}
+        f:podIP: {}
+        f:podIPs:
+          .: {}
+          k:{"ip":"10.244.0.14"}:
+            .: {}
+            f:ip: {}
+        f:startTime: {}
+    manager: kubelet
+    operation: Update
+    time: "2021-05-05T16:22:23Z"
+  name: px-5f87d8856c-8f6bk
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: px-5f87d8856c
+    uid: 9b7a04bf-811e-483e-826e-82c7b9e81ca7
+  resourceVersion: "2852485"
+  selfLink: /api/v1/namespaces/default/pods/px-5f87d8856c-8f6bk
+  uid: cdf6bfe3-ee3e-4c1b-9b9b-44ddc5230bff
+spec:
+  containers:
+  - image: ghcr.io/stefanprodan/podinfo:5.1.1
+    imagePullPolicy: IfNotPresent
+    name: podinfo
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-kx75m
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: kind-control-plane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-kx75m
+    secret:
+      defaultMode: 420
+      secretName: default-token-kx75m
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:23Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:23Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://9352479029aec43f681ec92a1b71058572a07ec6a0e3d3c29f41df38e0be6b00
+    image: ghcr.io/stefanprodan/podinfo:5.1.1
+    imageID: ghcr.io/stefanprodan/podinfo@sha256:6a28873d153df6859caa1e071fc8dee1baf7afe84b9d34e1d9774c8e66b633d5
+    lastState: {}
+    name: podinfo
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2021-05-05T16:22:22Z"
+  hostIP: 172.18.0.2
+  phase: Running
+  podIP: 10.244.0.14
+  podIPs:
+  - ip: 10.244.0.14
+  qosClass: BestEffort
+  startTime: "2021-05-05T16:22:15Z"
+---
+# {"time":"2021-05-05T16:22:23.257404165Z","style":"watch","kind":"Deployment"}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"px","namespace":"default"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"podinfo"}},"template":{"metadata":{"labels":{"app":"podinfo"}},"spec":{"containers":[{"image":"ghcr.io/stefanprodan/podinfo:5.1.1","name":"podinfo"}]}}}}
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  generation: 1
+  managedFields:
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+      f:spec:
+        f:progressDeadlineSeconds: {}
+        f:replicas: {}
+        f:revisionHistoryLimit: {}
+        f:selector:
+          f:matchLabels:
+            .: {}
+            f:app: {}
+        f:strategy:
+          f:rollingUpdate:
+            .: {}
+            f:maxSurge: {}
+            f:maxUnavailable: {}
+          f:type: {}
+        f:template:
+          f:metadata:
+            f:labels:
+              .: {}
+              f:app: {}
+          f:spec:
+            f:containers:
+              k:{"name":"podinfo"}:
+                .: {}
+                f:image: {}
+                f:imagePullPolicy: {}
+                f:name: {}
+                f:resources: {}
+                f:terminationMessagePath: {}
+                f:terminationMessagePolicy: {}
+            f:dnsPolicy: {}
+            f:restartPolicy: {}
+            f:schedulerName: {}
+            f:securityContext: {}
+            f:terminationGracePeriodSeconds: {}
+    manager: kubectl-client-side-apply
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          f:deployment.kubernetes.io/revision: {}
+      f:status:
+        f:availableReplicas: {}
+        f:conditions:
+          .: {}
+          k:{"type":"Available"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Progressing"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+        f:observedGeneration: {}
+        f:readyReplicas: {}
+        f:replicas: {}
+        f:unavailableReplicas: {}
+        f:updatedReplicas: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:23Z"
+  name: px
+  namespace: default
+  resourceVersion: "2852487"
+  selfLink: /apis/apps/v1/namespaces/default/deployments/px
+  uid: 71c42017-61a7-418e-8e2c-897cf237d6e3
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: podinfo
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: podinfo
+    spec:
+      containers:
+      - image: ghcr.io/stefanprodan/podinfo:5.1.1
+        imagePullPolicy: IfNotPresent
+        name: podinfo
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2021-05-05T16:22:15Z"
+    lastUpdateTime: "2021-05-05T16:22:15Z"
+    message: Deployment does not have minimum availability.
+    reason: MinimumReplicasUnavailable
+    status: "False"
+    type: Available
+  - lastTransitionTime: "2021-05-05T16:22:15Z"
+    lastUpdateTime: "2021-05-05T16:22:23Z"
+    message: ReplicaSet "px-5f87d8856c" is progressing.
+    reason: ReplicaSetUpdated
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 2
+  unavailableReplicas: 1
+  updatedReplicas: 2
+---
+# {"time":"2021-05-05T16:22:23.261361194Z","style":"watch","kind":"Pod"}
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  generateName: px-5f87d8856c-
+  labels:
+    app: podinfo
+    pod-template-hash: 5f87d8856c
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:pod-template-hash: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"9b7a04bf-811e-483e-826e-82c7b9e81ca7"}:
+            .: {}
+            f:apiVersion: {}
+            f:blockOwnerDeletion: {}
+            f:controller: {}
+            f:kind: {}
+            f:name: {}
+            f:uid: {}
+      f:spec:
+        f:containers:
+          k:{"name":"podinfo"}:
+            .: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:resources: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext: {}
+        f:terminationGracePeriodSeconds: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:conditions:
+          k:{"type":"ContainersReady"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Initialized"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Ready"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+        f:containerStatuses: {}
+        f:hostIP: {}
+        f:phase: {}
+        f:podIP: {}
+        f:podIPs:
+          .: {}
+          k:{"ip":"10.244.0.13"}:
+            .: {}
+            f:ip: {}
+        f:startTime: {}
+    manager: kubelet
+    operation: Update
+    time: "2021-05-05T16:22:23Z"
+  name: px-5f87d8856c-c29hj
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: px-5f87d8856c
+    uid: 9b7a04bf-811e-483e-826e-82c7b9e81ca7
+  resourceVersion: "2852488"
+  selfLink: /api/v1/namespaces/default/pods/px-5f87d8856c-c29hj
+  uid: 2d2ae783-5bc3-46ae-9f2b-a89aa0fdbcf7
+spec:
+  containers:
+  - image: ghcr.io/stefanprodan/podinfo:5.1.1
+    imagePullPolicy: IfNotPresent
+    name: podinfo
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-kx75m
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: kind-control-plane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-kx75m
+    secret:
+      defaultMode: 420
+      secretName: default-token-kx75m
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:23Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:23Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2021-05-05T16:22:15Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://67d9f85ff8d810e6b32ce4bc8d0f1c3a2a7f748d49ef82bb4276346950585e64
+    image: ghcr.io/stefanprodan/podinfo:5.1.1
+    imageID: ghcr.io/stefanprodan/podinfo@sha256:6a28873d153df6859caa1e071fc8dee1baf7afe84b9d34e1d9774c8e66b633d5
+    lastState: {}
+    name: podinfo
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2021-05-05T16:22:22Z"
+  hostIP: 172.18.0.2
+  phase: Running
+  podIP: 10.244.0.13
+  podIPs:
+  - ip: 10.244.0.13
+  qosClass: BestEffort
+  startTime: "2021-05-05T16:22:15Z"
+---
+# {"time":"2021-05-05T16:22:23.274694998Z","style":"watch","kind":"Deployment"}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"name":"px","namespace":"default"},"spec":{"replicas":2,"selector":{"matchLabels":{"app":"podinfo"}},"template":{"metadata":{"labels":{"app":"podinfo"}},"spec":{"containers":[{"image":"ghcr.io/stefanprodan/podinfo:5.1.1","name":"podinfo"}]}}}}
+  creationTimestamp: "2021-05-05T16:22:15Z"
+  generation: 1
+  managedFields:
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+      f:spec:
+        f:progressDeadlineSeconds: {}
+        f:replicas: {}
+        f:revisionHistoryLimit: {}
+        f:selector:
+          f:matchLabels:
+            .: {}
+            f:app: {}
+        f:strategy:
+          f:rollingUpdate:
+            .: {}
+            f:maxSurge: {}
+            f:maxUnavailable: {}
+          f:type: {}
+        f:template:
+          f:metadata:
+            f:labels:
+              .: {}
+              f:app: {}
+          f:spec:
+            f:containers:
+              k:{"name":"podinfo"}:
+                .: {}
+                f:image: {}
+                f:imagePullPolicy: {}
+                f:name: {}
+                f:resources: {}
+                f:terminationMessagePath: {}
+                f:terminationMessagePolicy: {}
+            f:dnsPolicy: {}
+            f:restartPolicy: {}
+            f:schedulerName: {}
+            f:securityContext: {}
+            f:terminationGracePeriodSeconds: {}
+    manager: kubectl-client-side-apply
+    operation: Update
+    time: "2021-05-05T16:22:15Z"
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          f:deployment.kubernetes.io/revision: {}
+      f:status:
+        f:availableReplicas: {}
+        f:conditions:
+          .: {}
+          k:{"type":"Available"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Progressing"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+        f:observedGeneration: {}
+        f:readyReplicas: {}
+        f:replicas: {}
+        f:updatedReplicas: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2021-05-05T16:22:23Z"
+  name: px
+  namespace: default
+  resourceVersion: "2852490"
+  selfLink: /apis/apps/v1/namespaces/default/deployments/px
+  uid: 71c42017-61a7-418e-8e2c-897cf237d6e3
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 2
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: podinfo
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: podinfo
+    spec:
+      containers:
+      - image: ghcr.io/stefanprodan/podinfo:5.1.1
+        imagePullPolicy: IfNotPresent
+        name: podinfo
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+status:
+  availableReplicas: 2
+  conditions:
+  - lastTransitionTime: "2021-05-05T16:22:23Z"
+    lastUpdateTime: "2021-05-05T16:22:23Z"
+    message: Deployment has minimum availability.
+    reason: MinimumReplicasAvailable
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2021-05-05T16:22:15Z"
+    lastUpdateTime: "2021-05-05T16:22:23Z"
+    message: ReplicaSet "px-5f87d8856c" has successfully progressed.
+    reason: NewReplicaSetAvailable
+    status: "True"
+    type: Progressing
+  observedGeneration: 1
+  readyReplicas: 2
+  replicas: 2
+  updatedReplicas: 2

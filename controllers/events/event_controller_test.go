@@ -275,7 +275,7 @@ func TestDeployWithConditions(t *testing.T) {
 	}{
 		{
 			name:     "test-playback",
-			filename: "/tmp/foo2",
+			filename: "testdata/deployment-2-pods.yaml",
 			wantTraces: []string{
 				"0: kubectl-client-side-apply Deployment.Update ",
 				"1: kube-controller-manager Deployment.MinimumReplicasUnavailable (0) Deployment does not have minimum availability.",
